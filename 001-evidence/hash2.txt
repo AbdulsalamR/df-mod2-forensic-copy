@@ -1,0 +1,5 @@
+
+Algorithm       Hash                                                                   Path
+---------       ----                                                                   ----
+SHA256          4909AF95B972089D6863CA415B0B6F01FE33B12E58CC8826863D224C93D4CF83       C:\Users\deniy\Documents\df-mod2…
+
