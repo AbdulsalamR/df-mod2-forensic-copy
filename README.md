@@ -19,7 +19,7 @@ foster the development of practical proficiencies in the realm of digital forens
 - VS Code Extension: Remote Repositories (by Microsoft)
 - VS Code Extension: PowerShell (by Microsoft)
 
-### 🗒️ Technical Notes
+### ❗🗒️ Technical Notes
 
 # To run a script in PowerShell terminal using the `./` notation, follow these steps:
 
@@ -60,14 +60,6 @@ These commands are essential tools for various tasks in PowerShell,
 particularly in scenarios like digital forensics 
 where file manipulation and verification are common requirements.
 
-
-### ❗📑 Case 001 
-
-For Case 001, 
-
-1. Create your own evidence files in a subfolder (e.g., 001-evidence).
-2. Modify the script to create your own copy and hash resuts.
-
 ### 🏃🏃‍♀️ Run Script
 
 ## In VS Code 🧭  
@@ -102,6 +94,65 @@ Get-FileHash ./001-evidence-COPY/evidence2.txt -Algorithm SHA256 | Out-File ./00
 2. Create a forensic copy of the evidence for analysis
 3. Recheck hashes to ensure no changes have been introduced to the copy.
 4. Undo all the files and clean things up. 
+
+###❗📑 Case 001 Script for automation
+
+## ❗Create a folder for the forensic copy
+New-Item -ItemType Directory -Force -Path ./001-RESULT-COPY
+
+## ❗Calculate the hash of each evidence file and write it to a text file
+
+$hashFilePaths = @()
+
+for ($i = 1; $i -le 4; $i++) {
+    $hashFilePath = "./001-evidence/hash$i.txt"
+    Get-FileHash -Path "./001-evidence/evidence$i.txt" -Algorithm SHA256 | Out-File -FilePath $hashFilePath
+    $hashFilePaths += $hashFilePath
+}
+
+Get-Content $hashFilePaths | Out-File "./001-RESULT-COPY/hash5.txt"
+
+## 📗 This script will:
+	Create a result “001-RESULT-COPY” folder.
+	Generate a SHA256 hash for each evidence file and write it to a single text file.
+	Combine all the hashes into a single file named hash5.txt for easy verification.
+
+### ⚓ As for comparing this method with using a tool like Autopsy:
+
+## 🔖 Autopsy is a graphical interface tool that is widely used in digital forensics
+It automates many tasks and provides a user-friendly way to analyze evidence, 
+making it accessible even to those with less technical expertise.
+
+## 🔖 PowerShell Scripting, on the other hand, 
+requires more technical knowledge but offers greater flexibility and 
+can be customized to fit specific needs. 
+It can be faster for simple tasks and 
+can be easily integrated into other scripts or processes.
+
+## Positives of Autopsy:
+•	User-friendly GUI.
+•	Comprehensive set of features for forensic analysis.
+•	Good for complex cases with large amounts of data.
+
+## Negatives of Autopsy:
+•	Can be slower for simple tasks.
+•	Less flexible for custom workflows.
+
+## Positives of PowerShell Scripting:
+•	Highly customizable.
+•	Can be faster for specific tasks.
+•	Easy to integrate with other systems.
+
+## Negatives of PowerShell Scripting:
+•	Requires technical knowledge to create and modify scripts.
+•	Less intuitive for those unfamiliar with scripting or command-line interfaces.
+
+In summary, Autopsy is great for comprehensive forensic investigations, 
+while PowerShell scripts are excellent for automating 
+specific tasks in a customizable and efficient manner. 
+The choice between the two depends on the complexity of the case and 
+the technical expertise of the investigator.
+
 
 ### 🦸‍♂️💻 Author
 Abdulsalam Rasak
