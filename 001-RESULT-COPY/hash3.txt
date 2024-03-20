@@ -1,8 +1,0 @@
-
-Algorithm       Hash                                                                   P
-                                                                                       a
-                                                                                       t
-                                                                                       h
----------       ----                                                                   -
-SHA256          86A166EFC4BDD403CD77C098C8582D76B7685F73CAB99B481D2318EE39BC884A       C
-
